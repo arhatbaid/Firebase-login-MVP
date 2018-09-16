@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "483018433959",
+    "firebase_url": "https://your-app-72f11.firebaseio.com",
+    "project_id": "your-app-72f11",
+    "storage_bucket": "your-app-72f11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483018433959:android:9848311ce6a2f830",
+        "android_client_info": {
+          "package_name": "com.admin.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483018433959-6lbpr0ig4ndbmk3fchd7nq9qv5luf2ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrHuDy7dC4QruwAKrsKyhNf3IJW_nuOkg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483018433959:android:1802006a5368532e",
+        "android_client_info": {
+          "package_name": "com.android.studentconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483018433959-6lbpr0ig4ndbmk3fchd7nq9qv5luf2ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrHuDy7dC4QruwAKrsKyhNf3IJW_nuOkg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

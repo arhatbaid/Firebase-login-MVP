@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/theme_color"
+    android:elevation="@dimen/elevation"
+    android:gravity="center_vertical">
+
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="@dimen/very_small_padding"
+        android:drawableStart="@drawable/ic_back"
+        android:paddingEnd="@dimen/small_padding"
+        android:paddingStart="@dimen/small_padding"
+        android:text="@string/back"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="22sp"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
