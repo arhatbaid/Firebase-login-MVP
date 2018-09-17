@@ -2,6 +2,7 @@ package com.android.studentconnect.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Patterns
 import android.view.inputmethod.InputMethodManager
 import com.android.studentconnect.ui.base.ActBase
 import java.util.regex.Pattern
@@ -18,6 +19,10 @@ object Utils {
         val pattern = Pattern.compile(regex)
         val matcher = pattern.matcher(password)
         return matcher.matches()
+    }
+
+    fun isEmailValid(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun isConnectedToNetwork(context: Context): Boolean {

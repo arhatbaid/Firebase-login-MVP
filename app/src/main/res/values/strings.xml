@@ -2,11 +2,16 @@
     <string name="app_name">StudentConnect</string>
     <!--General Text-->
     <string name="back">Back</string>
+
+    <!--Success Text-->
+    <string name="password_reset_email">A password reset email has been sent to your mail.</string>
+
     <!--Error text-->
     <string name="error_field_required">This field is required</string>
     <string name="email_empty">The email address cannot be empty!!!</string>
     <string name="password_empty">The password cannot be empty!!!</string>
     <string name="email_invalid">Please enter the correct email address</string>
+    <string name="email_not_verified">It seems hat your email is not verified, please verify and login.</string>
     <string name="password_invalid">The password should contain atleast one capital alphabet, one small alphabet and one number with minimum length of 6</string>
     <string name="password_mismatch">The entered password doesnot match!!!</string>
 
@@ -18,12 +23,14 @@
     <string name="btn_login">Login</string>
     <string name="how_to_verify">How to verify?</string>
     <string name="not_a_member">Not a member? SignUp</string>
+    <string name="tag_login">Login</string>
+    <string name="tag_resend_email">Resend Email</string>
+    <string name="tag_forgot_password">Forgot Password</string>
 
     <!-- Sign up screen-->
     <string name="title_sign_up">SIGN UP</string>
     <string name="university_name">University Name</string>
     <string name="email_id">Email Id</string>
-
     <string name="conf_password">Confirm Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="tnc">By tapping our Sign Up you agree our\nTerms of Services &amp; Privacy Policy</string>
@@ -45,7 +52,6 @@
     <string name="nationality">Nationality</string>
     <string name="major">Major</string>
     <string name="btn_next">Next</string>
-
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."

@@ -21,16 +21,16 @@ class ISignUpPresenterImpl(signUpView: ISignUpView, mContext: ActBase) : ISignUp
     }
 
     override fun validateCredentials(email: String, emailExt: String, password: String, confPassword: String) {
-        var emalFinal = ""
+        var emailFinal = ""
         if (signUpView != null) {
 
-            if (email.contains("@")){
+            if (email.contains("@")) {
                 var arrEmail = email.split("@")
-                if (arrEmail.size >= 2){
-                    emalFinal = arrEmail[0].plus(emailExt)
+                if (arrEmail.size >= 2) {
+                    emailFinal = arrEmail[0].plus(emailExt)
                 }
-            }else{
-                emalFinal = email.plus(emailExt)
+            } else {
+                emailFinal = email.plus(emailExt)
             }
 
             if (emailExt.equals("xxx.edu")) {
@@ -38,12 +38,12 @@ class ISignUpPresenterImpl(signUpView: ISignUpView, mContext: ActBase) : ISignUp
                 return
             }
 
-            if (TextUtils.isEmpty(emalFinal)) {
+            if (TextUtils.isEmpty(emailFinal)) {
                 signUpView?.errorInvalidEmailId(R.string.email_empty)
                 return
             }
 
-            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emalFinal).matches()) {
+            if (!Utils.isEmailValid(emailFinal)) {
                 signUpView?.errorInvalidEmailId(R.string.email_invalid)
                 return
             }
@@ -73,7 +73,7 @@ class ISignUpPresenterImpl(signUpView: ISignUpView, mContext: ActBase) : ISignUp
                 return
             }
             signUpView?.onSignUpValidDataEntered()
-            onSignUpClicked(emalFinal, password)
+            onSignUpClicked(emailFinal, password)
         }
     }
 

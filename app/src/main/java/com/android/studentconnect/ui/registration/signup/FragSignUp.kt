@@ -42,7 +42,6 @@ class FragSignUp : FragBase(),
         setTextSpannable()
 
         txtUniversityName.addTextChangedListener(TextWatcher(getActBase(), inpTxtUniversityName, R.string.university_name))
-        txtEmail.addTextChangedListener(TextWatcher(getActBase(), inpTxtEmail, R.string.email))
         txtPassword.addTextChangedListener(TextWatcher(getActBase(), inpTxtPassowrd, R.string.password))
         txtConfPassword.addTextChangedListener(TextWatcher(getActBase(), inpTxtConfPassowrd, R.string.conf_password))
 

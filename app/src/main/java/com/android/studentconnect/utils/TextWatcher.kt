@@ -26,7 +26,10 @@ class TextWatcher(context: ActBase, inputText: TextInputLayout, tag: Int) : Text
                 inputText?.error = null
             }
             R.string.email -> {
-                inputText?.error = null
+                if (Utils.isEmailValid(s.toString().trim())) {
+                    inputText?.error = null
+                } else
+                    inputText?.error = context?.getString(R.string.email_invalid)
             }
             R.string.password -> {
                 if (Utils.isPasswordValid(s.toString().trim())) {
