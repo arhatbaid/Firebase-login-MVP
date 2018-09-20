@@ -3,6 +3,7 @@ package com.android.studentconnect.ui.base
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -42,8 +43,8 @@ open class ActBase : AppCompatActivity(),
         progress.visibility = View.GONE
     }
 
-    override fun onError(message: Int) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    override fun onError(resId: Int) {
+        Toast.makeText(this, resId, Toast.LENGTH_LONG).show()
 
     }
 
@@ -98,6 +99,21 @@ open class ActBase : AppCompatActivity(),
                 R.anim.slide_in_right, R.anim.slide_out_right)
         ft?.replace(R.id.fragContainer, frag, frag::class.java.getName())
         ft?.commit()
+    }
+
+    override fun showDialogFragment(frag: DialogFragment, tag: String) {
+        val ft = supportFragmentManager.beginTransaction()
+        val prev = supportFragmentManager.findFragmentByTag(tag)
+        if (prev != null) {
+            ft.remove(prev)
+        }
+        ft.addToBackStack(null)
+        frag.show(ft, tag)
+        frag.setCancelable(false)
+    }
+
+    override fun dismissDialogFragment(frag: DialogFragment) {
+        frag.dismiss()
     }
 
     override fun addFragment(frag: Fragment, bundle: Bundle?) {

@@ -26,7 +26,7 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
         this.context = context
     }
 
-    override fun validateCredentials(email: String, password: String, tag: Int) {
+    override fun validateCredentials(email: String, password: String) {
         if (signInView != null) {
             if (TextUtils.isEmpty(email)) {
                 signInView?.errorInvalidEmailId(R.string.email_empty)
@@ -48,11 +48,11 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
                 return
             }
 
-            signInView?.onSignInValidDataEntered(tag)
+            loginUser(email, password)
         }
     }
 
-    override fun loginUser(email: String, password: String, tag: Int) {
+    fun loginUser(email: String, password: String) {
         context!!.getFirebaseAuth().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -60,14 +60,7 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
                         Log.d(FragSignIn::class.java.name, "signInWithEmail:success")
                         val fbUser = task.result.user
                         if (fbUser != null) {
-                            when (tag) {
-                                R.string.tag_login -> {
-                                    onLoginClicked(fbUser)
-                                }
-                                R.string.tag_resend_email -> {
-                                    onResendEmailClicked(fbUser)
-                                }
-                            }
+                            onLoginClicked(fbUser)
                         } else {
                             // If sign in fails, display a message to the user.
                             onLoginError(task)
@@ -98,49 +91,18 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
     }
 
     private fun onResendEmailClicked(user: FirebaseUser?) {
-        user?.sendEmailVerification()?.addOnCompleteListener { task ->
 
-            if (task.isSuccessful) {
-                signInView?.onVerificationEmailSentSuccessfully("Email Sent successfully")
-            } else {
-                signInView?.onVerificationEmailFailed(task.exception!!.localizedMessage)
-                Log.e(FragSignIn::class.java.name, "sendEmailVerification", task.exception)
-            }
-
-        }
     }
 
     override fun fetchedUserObj(user: Users?, isUserDataUploaded: Boolean) {
-            if (isUserDataUploaded){
-                if (user!!.is_phone_verified){
-                    signInView?.goToHomeScreen()
-                }else{
-                    signInView?.goToNumberVerifyScreen()
-                }
-            }else{
-                signInView?.goToUserDetailScreen()
+        if (isUserDataUploaded) {
+            if (user!!.is_phone_verified) {
+                signInView?.goToHomeScreen()
+            } else {
+                signInView?.goToNumberVerifyScreen()
             }
-    }
-
-    override fun forgotPassword(email: String) {
-
-        if (TextUtils.isEmpty(email)) {
-            signInView?.errorInvalidEmailId(R.string.email_empty)
-            return
+        } else {
+            signInView?.goToUserDetailScreen()
         }
-
-        if (!Utils.isEmailValid(email)) {
-            signInView?.errorInvalidEmailId(R.string.email_invalid)
-            return
-        }
-
-        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        context!!.getActBase().showMessage(R.string.password_reset_email)
-                    }else{
-                        context!!.getActBase().onError(task.exception.toString())
-                    }
-                }
     }
 }

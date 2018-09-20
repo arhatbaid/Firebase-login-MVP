@@ -4,9 +4,6 @@ import com.google.firebase.auth.FirebaseUser
 
 interface ISignInPresenter {
 
-    fun validateCredentials(email: String, password: String, tag : Int)
+    fun validateCredentials(email: String, password: String)
 
-    fun forgotPassword(email: String)
-
-    fun loginUser(email: String, password: String, tag : Int)
 }

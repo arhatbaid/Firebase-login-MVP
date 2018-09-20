@@ -52,5 +52,6 @@ ext {
     calligraphy = '2.3.0'
     glideVersion = '3.7.0'
     prefsLibVersion = '1.8.1@aar'
+    webviewVersion = '1.2.7'
 }
 

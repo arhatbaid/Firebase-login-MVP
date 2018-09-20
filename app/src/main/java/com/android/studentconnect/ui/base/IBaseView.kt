@@ -2,6 +2,7 @@ package com.arhatbaid.uhcl.ui.base
 
 import android.os.Bundle
 import android.support.annotation.StringRes
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 
@@ -34,9 +35,15 @@ interface IBaseView {
 
 
     //Fragment methods
-    fun replaceFragment(frag: Fragment, bundle: Bundle?)
+    fun replaceFragment(frag: Fragment, bundle: Bundle?){}
 
-    fun addFragment(frag: Fragment, bundle: Bundle?)
+    fun addFragment(frag: Fragment, bundle: Bundle?){}
 
-    fun initFrag(frag: Fragment)
+    fun initFrag(frag: Fragment){}
+
+
+    //Dialog fragment
+    fun showDialogFragment(frag: DialogFragment, tag: String){}
+
+    fun dismissDialogFragment(frag: DialogFragment){}
 }

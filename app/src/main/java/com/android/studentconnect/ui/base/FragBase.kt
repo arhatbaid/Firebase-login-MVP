@@ -2,6 +2,7 @@ package com.android.studentconnect.ui.base
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.view.View
 import com.arhatbaid.uhcl.ui.base.IBaseView
@@ -89,6 +90,13 @@ abstract class FragBase : Fragment(),
         getActBase().initFrag(frag)
     }
 
+    override fun showDialogFragment(frag: DialogFragment, tag: String) {
+        getActBase().showDialogFragment(frag, tag)
+    }
+
+    override fun dismissDialogFragment(frag: DialogFragment) {
+        getActBase().dismissDialogFragment(frag)
+    }
 
     interface Callback {
 

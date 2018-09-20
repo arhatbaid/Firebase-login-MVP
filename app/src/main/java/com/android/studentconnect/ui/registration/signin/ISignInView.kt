@@ -11,8 +11,6 @@ interface ISignInView : IBaseView {
 
     fun errorInvalidPassword(description: Int)
 
-    fun onSignInValidDataEntered(tag: Int)
-
     fun showNotVerifiedDialogue()
 
     fun goToHomeScreen()

@@ -15,11 +15,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.studentconnect.R
 import com.android.studentconnect.ui.base.FragBase
+import com.android.studentconnect.ui.dialog.DialogForgotPassword
+import com.android.studentconnect.ui.dialog.DialogResendEmail
 import com.android.studentconnect.ui.registration.signup.FragSignUp
 import com.android.studentconnect.utils.TextWatcher
 import com.arhatbaid.uhcl.ui.registration.signin.ISignInView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.frag_sign_in.*
+import com.thefinestartist.finestwebview.FinestWebView
+
+
 
 class FragSignIn : FragBase(),
         ISignInView,
@@ -52,19 +57,18 @@ class FragSignIn : FragBase(),
     override fun onClick(v: View?) {
         when (v) {
             lblResendEmail -> {
-                signinPresenter?.validateCredentials(txtEmail.text.toString().trim(),
-                        txtPassword.text.toString().trim(), R.string.tag_resend_email)
+                showDialogFragment(DialogResendEmail(), getString(R.string.tag_resend_email))
             }
             lblForgotPassword -> {
-                signinPresenter?.validateCredentials(txtEmail.text.toString().trim(),
-                        txtPassword.text.toString().trim(), R.string.tag_forgot_password)
+                showDialogFragment(DialogForgotPassword(), getString(R.string.tag_forgot_password))
             }
             btnLogin -> {
                 signinPresenter?.validateCredentials(txtEmail.text.toString().trim(),
-                        txtPassword.text.toString().trim(), R.string.tag_login)
+                        txtPassword.text.toString().trim())
             }
             lblHowToVerify -> {
                 //Open the spam link
+                FinestWebView.Builder(getActBase()).show("https://myspam.uhcl.edu:28443/")
             }
         }
     }
@@ -76,24 +80,6 @@ class FragSignIn : FragBase(),
 
     override fun errorInvalidPassword(description: Int) {
         inpTxtPassowrd.error = getString(description)
-    }
-
-    override fun onSignInValidDataEntered(tag: Int) {
-        inpTxtEmail.error = null
-        inpTxtPassowrd.error = null
-
-        when (tag) {
-            R.string.tag_login -> {
-                signinPresenter?.loginUser(txtEmail.text.toString().trim(), txtPassword.text.toString().trim(), tag)
-            }
-            R.string.tag_resend_email -> {
-                signinPresenter?.loginUser(txtEmail.text.toString().trim(), txtPassword.text.toString().trim(), tag)
-
-            }
-            R.string.tag_forgot_password -> {
-                signinPresenter?.forgotPassword(txtEmail.text.toString().trim())
-            }
-        }
     }
 
     override fun showNotVerifiedDialogue() {

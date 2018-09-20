@@ -44,8 +44,8 @@ dependencies {
     //Firebase library
     implementation "com.google.firebase:firebase-core:$rootProject.firebase_core"
     implementation "com.google.firebase:firebase-auth:$rootProject.firebase_auth"
-      implementation "com.google.firebase:firebase-messaging:$rootProject.firebase_messaging"
-      implementation "com.google.firebase:firebase-firestore:$rootProject.firestore"
+    implementation "com.google.firebase:firebase-messaging:$rootProject.firebase_messaging"
+    implementation "com.google.firebase:firebase-firestore:$rootProject.firestore"
 
     //Testing library
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
@@ -55,6 +55,7 @@ dependencies {
     //Misc
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphy"
     implementation "com.pixplicity.easyprefs:library:$rootProject.prefsLibVersion"
+    implementation "com.thefinestartist:finestwebview:$rootProject.webviewVersion"
 }
 
 apply plugin: 'com.google.gms.google-services'
