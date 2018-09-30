@@ -56,6 +56,9 @@ dependencies {
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphy"
     implementation "com.pixplicity.easyprefs:library:$rootProject.prefsLibVersion"
     implementation "com.thefinestartist:finestwebview:$rootProject.webviewVersion"
+    implementation "com.github.esafirm.android-image-picker:imagepicker:$rootProject.imagePickerVersion"
+    implementation "de.hdodenhof:circleimageview:$rootProject.circularImageVersion"
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 }
 
 apply plugin: 'com.google.gms.google-services'

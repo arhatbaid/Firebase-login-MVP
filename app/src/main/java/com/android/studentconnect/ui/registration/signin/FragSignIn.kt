@@ -11,10 +11,13 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import com.android.studentconnect.R
 import com.android.studentconnect.ui.base.FragBase
+import com.android.studentconnect.ui.dialog.DialogEmail
 import com.android.studentconnect.ui.dialog.DialogForgotPassword
 import com.android.studentconnect.ui.dialog.DialogResendEmail
 import com.android.studentconnect.ui.registration.signup.FragSignUp
@@ -28,7 +31,8 @@ import com.thefinestartist.finestwebview.FinestWebView
 
 class FragSignIn : FragBase(),
         ISignInView,
-        View.OnClickListener {
+        View.OnClickListener,
+        View.OnFocusChangeListener {
 
     private var signinPresenter: ISignInPresenterImpl? = null
 
@@ -47,6 +51,9 @@ class FragSignIn : FragBase(),
 
         txtEmail.addTextChangedListener(TextWatcher(getActBase(), inpTxtEmail, R.string.email))
         txtPassword.addTextChangedListener(TextWatcher(getActBase(), inpTxtPassowrd, R.string.password))
+
+        txtEmail.setOnFocusChangeListener(this)
+        txtPassword.setOnFocusChangeListener(this)
 
         lblResendEmail.setOnClickListener(this)
         lblForgotPassword.setOnClickListener(this)
@@ -68,11 +75,11 @@ class FragSignIn : FragBase(),
             }
             lblHowToVerify -> {
                 //Open the spam link
+                showDialogFragment(DialogEmail(), getString(R.string.how_to_verify))
                 FinestWebView.Builder(getActBase()).show("https://myspam.uhcl.edu:28443/")
             }
         }
     }
-
 
     override fun errorInvalidEmailId(description: Int) {
         inpTxtEmail.error = getString(description)
@@ -106,7 +113,19 @@ class FragSignIn : FragBase(),
         onError(description)
     }
 
-
+    //TODO edittext border color when focused
+    override fun onFocusChange(v: View?, p1: Boolean) {
+        inpTxtEmail.setBoxStrokeColor(resources.getColor(R.color.theme_color_light))
+        inpTxtPassowrd.setBoxStrokeColor(resources.getColor(R.color.theme_color_light))
+        when(v){
+            txtEmail -> {
+                inpTxtEmail.setBoxStrokeColor(resources.getColor(R.color.theme_color))
+            }
+            txtPassword -> {
+                inpTxtPassowrd.setBoxStrokeColor(resources.getColor(R.color.theme_color))
+            }
+        }
+    }
     /*================================Misc=============================*/
     private fun setTextSpannable() {
 
@@ -123,6 +142,5 @@ class FragSignIn : FragBase(),
         lblSignup.setText(sp)
         lblSignup.setMovementMethod(LinkMovementMethod.getInstance());
     }
-
 
 }

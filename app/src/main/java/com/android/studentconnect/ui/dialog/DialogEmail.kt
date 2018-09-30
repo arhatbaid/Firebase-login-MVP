@@ -8,27 +8,27 @@ import android.view.ViewGroup
 import com.android.studentconnect.R
 import com.android.studentconnect.ui.base.DialogBase
 import com.android.studentconnect.utils.Utils
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.dialog_foget_password.*
+import kotlinx.android.synthetic.main.dialog_email.*
 
-class DialogForgotPassword : DialogBase(),
+class DialogEmail : DialogBase(),
         View.OnClickListener {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_foget_password, container, false)
+        return inflater.inflate(R.layout.dialog_email, container, false)
     }
+
 
     override fun setUp(view: View) {
         lblCancel.setOnClickListener(this)
-        lblResetPassword.setOnClickListener(this)
+        lblOk.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            lblResetPassword -> {
+            lblOk -> {
                 getActBase().showProgress()
-                forgotPassword()
+                getUniversityDetail()
             }
             lblCancel -> {
                 getActBase().hideProgress()
@@ -38,7 +38,7 @@ class DialogForgotPassword : DialogBase(),
         }
     }
 
-    private fun forgotPassword() {
+    private fun getUniversityDetail() {
         val email = txtEmail.text.toString().trim()
 
         if (TextUtils.isEmpty(email)) {
@@ -52,15 +52,6 @@ class DialogForgotPassword : DialogBase(),
             getActBase().hideProgress()
             return
         }
-        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                .addOnCompleteListener { task ->
-                    getActBase().hideProgress()
-                    if (task.isSuccessful) {
-                        getActBase().showMessage(R.string.password_reset_email)
-                    } else {
-                        getActBase().onError(task.exception.toString())
-                    }
-                }
     }
 
 }

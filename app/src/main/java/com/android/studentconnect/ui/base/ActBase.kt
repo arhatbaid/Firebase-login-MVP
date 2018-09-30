@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import com.android.studentconnect.R
 import com.android.studentconnect.ui.registration.signin.FragSignIn
+import com.android.studentconnect.ui.registration.userdetails.FragUserDetails
 import com.android.studentconnect.utils.Utils
 import com.arhatbaid.uhcl.ui.base.IBaseView
 import com.google.firebase.auth.FirebaseAuth

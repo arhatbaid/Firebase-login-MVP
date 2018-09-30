@@ -14,6 +14,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.pixplicity.easyprefs.library.Prefs
+import kotlinx.android.synthetic.main.dialog_resend_email.*
 
 class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISignInPresenter,
         FetchUserData.Callback {
@@ -48,6 +49,7 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
                 return
             }
 
+            context?.showProgress()
             loginUser(email, password)
         }
     }
@@ -82,7 +84,6 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
         if (fbUser!!.isEmailVerified) {
             Prefs.putBoolean(UtilsPrefsKey.is_login, true)
             FetchUserData(context!!.getActBase(), this).fetchUser(FirebaseTable.USER.email, fbUser.email!!)
-//            FetchUniversityData(context!!.getActBase(), this).fetchUniversityList()
         } else {
             context?.hideProgress()
             onResendEmailClicked(fbUser)
@@ -91,10 +92,19 @@ class ISignInPresenterImpl(signInView: ISignInView, context: FragSignIn) : ISign
     }
 
     private fun onResendEmailClicked(user: FirebaseUser?) {
-
+        user?.sendEmailVerification()?.addOnCompleteListener { task ->
+            context?.hideProgress()
+            if (task.isSuccessful) {
+                context?.showMessage("Email Sent successfully")
+            } else {
+                context?.showMessage(task.exception!!.localizedMessage)
+                Log.e(FragSignIn::class.java.name, "sendEmailVerification", task.exception)
+            }
+        }
     }
 
     override fun fetchedUserObj(user: Users?, isUserDataUploaded: Boolean) {
+        context?.hideProgress()
         if (isUserDataUploaded) {
             if (user!!.is_phone_verified) {
                 signInView?.goToHomeScreen()

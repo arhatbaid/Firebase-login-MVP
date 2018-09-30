@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -53,5 +54,8 @@ ext {
     glideVersion = '3.7.0'
     prefsLibVersion = '1.8.1@aar'
     webviewVersion = '1.2.7'
+    imagePickerVersion = '1.13.1'
+    circularImageVersion = '2.2.0'
+    picassoVersion = '2.71828'
 }
 

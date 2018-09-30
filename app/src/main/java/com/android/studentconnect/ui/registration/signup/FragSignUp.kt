@@ -43,6 +43,7 @@ class FragSignUp : FragBase(),
 
         txtUniversityName.addTextChangedListener(TextWatcher(getActBase(), inpTxtUniversityName, R.string.university_name))
         txtPassword.addTextChangedListener(TextWatcher(getActBase(), inpTxtPassowrd, R.string.password))
+        txtEmail.addTextChangedListener(TextWatcher(getActBase(), inpTxtEmail,R.string.tag_empty_field_validation))
         txtConfPassword.addTextChangedListener(TextWatcher(getActBase(), inpTxtConfPassowrd, R.string.conf_password))
 
         txtUniversityName.setOnClickListener(this)

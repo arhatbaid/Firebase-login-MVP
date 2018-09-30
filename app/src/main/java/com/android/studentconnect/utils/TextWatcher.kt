@@ -43,6 +43,12 @@ class TextWatcher(context: ActBase, inputText: TextInputLayout, tag: Int) : Text
                 } else
                     inputText?.error = context?.getString(R.string.password_invalid)
             }
+            R.string.tag_empty_field_validation->{
+                if (!s.toString().trim().isNullOrEmpty()) {
+                    inputText?.error = null
+                } else
+                    inputText?.error = context?.getString(R.string.email_invalid)
+            }
         }
 
     }
