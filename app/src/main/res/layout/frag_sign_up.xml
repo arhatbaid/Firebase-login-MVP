@@ -118,10 +118,11 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:theme="@style/AppTheme.TextInputLayout"
                 app:errorEnabled="true"
+                app:passwordToggleEnabled="true"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,10 +139,11 @@
                 android:layout_marginTop="@dimen/small_padding"
                 android:theme="@style/AppTheme.TextInputLayout"
                 app:errorEnabled="true"
+                app:passwordToggleEnabled="true"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtConfPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

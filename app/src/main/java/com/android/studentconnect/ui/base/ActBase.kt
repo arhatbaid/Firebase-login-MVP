@@ -42,8 +42,8 @@ open class ActBase : AppCompatActivity(),
         progress.visibility = View.GONE
     }
 
-    override fun onError(message: Int) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    override fun onError(resId: Int) {
+        Toast.makeText(this, resId, Toast.LENGTH_LONG).show()
 
     }
 
